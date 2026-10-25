@@ -1,0 +1,3505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Data Structures Practical File</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #222;
+}
+
+
+/* ================= NAVBAR ================= */
+
+nav {
+    width: 100%;
+    background: #111827;
+    color: white;
+    padding: 18px 7%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #38bdf8;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+nav ul li a:hover {
+    color: #38bdf8;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 450px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 70px 20px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #111827,
+        #1e3a8a,
+        #0f766e
+    );
+
+    color: white;
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.hero h1 {
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #38bdf8;
+}
+
+.hero p {
+    font-size: 19px;
+    line-height: 1.7;
+    color: #e5e7eb;
+}
+
+.btn {
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 13px 25px;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    background: #38bdf8;
+    color: #082f49;
+
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+
+/* ================= SECTION ================= */
+
+.section {
+    padding: 70px 7%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: 35px;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #6b7280;
+}
+
+
+/* ================= SEARCH ================= */
+
+.search-box {
+    max-width: 600px;
+    margin: 0 auto 35px;
+}
+
+.search-box input {
+    width: 100%;
+
+    padding: 16px 20px;
+
+    border: 2px solid #ddd;
+
+    border-radius: 30px;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #2563eb;
+}
+
+
+/* ================= TOPIC GRID ================= */
+
+.topics-grid {
+    display: grid;
+
+    grid-template-columns:
+    repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* ================= TOPIC CARD ================= */
+
+.topic-card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    box-shadow:
+    0 7px 25px rgba(0,0,0,0.08);
+
+    transition: 0.3s;
+
+    border-top:
+    5px solid #2563eb;
+}
+
+.topic-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,0.15);
+}
+
+.topic-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.topic-card h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.topic-card p {
+    color: #6b7280;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.program-count {
+    display: inline-block;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    margin-bottom: 18px;
+}
+
+
+/* ================= VIEW PROGRAM BUTTON ================= */
+
+.view-btn {
+    width: 100%;
+
+    border: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.view-btn:hover {
+    background: #1d4ed8;
+}
+
+
+/* ================= PROGRAM LIST ================= */
+
+.program-list {
+
+    display: none;
+
+    margin-top: 20px;
+
+    border-top:
+    1px solid #ddd;
+
+    padding-top: 15px;
+
+    max-height: 350px;
+
+    overflow-y: auto;
+}
+
+.program-list.show {
+    display: block;
+}
+
+
+/* ================= PROGRAM ITEM ================= */
+
+.program-item {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px;
+
+    margin-bottom: 8px;
+
+    background: #f8fafc;
+
+    border-radius: 8px;
+
+    border: 1px solid #e5e7eb;
+}
+
+.program-item span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* ================= OPEN BUTTON ================= */
+
+.open-code {
+
+    background: #16a34a;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 7px 12px;
+
+    border-radius: 6px;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+}
+
+.open-code:hover {
+    background: #15803d;
+}
+
+
+/* ================= COMPLEXITY ================= */
+
+.complexity-section {
+    background: #111827;
+    color: white;
+}
+
+.complexity-section
+.section-title h2 {
+    color: white;
+}
+
+.complexity-section
+.section-title p {
+    color: #cbd5e1;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.complexity-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: white;
+
+    color: #222;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+.complexity-table th,
+.complexity-table td {
+
+    padding: 15px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.complexity-table th {
+
+    background: #2563eb;
+
+    color: white;
+}
+
+.complexity-table tr:hover {
+    background: #f1f5f9;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+
+    background: #020617;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+footer span {
+    color: #38bdf8;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 900px) {
+
+    .topics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+}
+
+
+@media(max-width: 600px) {
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav ul {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .topics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .program-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .open-code {
+        text-align: center;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+<div class="logo">
+
+Data<span>Structures</span>
+
+</div>
+
+<ul>
+
+<li>
+<a href="#home">Home</a>
+</li>
+
+<li>
+<a href="#topics">Topics</a>
+</li>
+
+<li>
+<a href="#complexity">Complexity</a>
+</li>
+
+</ul>
+
+</nav>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<h1>
+
+Data <span>Structures</span>
+
+<br>
+
+Practical File
+
+</h1>
+
+<p>
+
+Programs, Algorithms & Complexity
+
+</p>
+
+<a href="#topics" class="btn">
+
+Explore Programs
+
+</a>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= TOPICS ================= -->
+
+<section class="section" id="topics">
+
+<div class="section-title">
+
+<h2>📚 Data Structure Programs</h2>
+
+<p>
+
+Click any topic to view all its programs.
+
+</p>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+<input
+type="text"
+id="search"
+placeholder="🔍 Search topic..."
+onkeyup="searchTopics()">
+
+</div>
+
+
+
+<div class="topics-grid">
+
+
+
+<!-- ================================================= -->
+<!-- SINGLE DIMENSIONAL ARRAY -->
+<!-- ================================================= -->
+
+<div class="topic-card">
+
+<div class="topic-icon">📦</div>
+
+<h3>Single Dimensional Array</h3>
+
+<p>
+
+Array programs including insertion,
+deletion, searching, sorting and
+other operations.
+
+</p>
+
+<span class="program-count">
+
+20 Programs
+
+</span>
+
+<button
+class="view-btn"
+onclick="togglePrograms('arrayPrograms')">
+
+▼ View 20 Programs
+
+</button>
+
+
+<div
+class="program-list"
+id="arrayPrograms">
+
+
+<!-- PROGRAM 1 -->
+
+<div class="program-item">
+
+<span>1.Enter an array from user and display all the value ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1q0sRe2HGSR8bEfWDq__ESX_m37Z8XC6G"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+
+<!-- PROGRAM 2 -->
+
+<div class="program-item">
+
+<span>2.Enter an array from user and print the array in reverse order ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-18tMmZYzEPCQPE1rS8q9UZtFioFVRBvfP"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+
+<!-- PROGRAM 3 -->
+
+<div class="program-item">
+
+<span>3.Enter an array from user and copy the array into second array?</span>
+
+<a
+href="https://texteditor.co/?id=drive-18XgNnX7ITtiGevfrOEh3DGvSpNRijOXE"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+
+<!-- PROGRAM 4 -->
+
+<div class="program-item">
+
+<span>4.Enter an array from user and copy it into another array in reverse order?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1C2WpZi6E85VU-C8_DFkPQFs899VUg2E-"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+
+<!-- PROGRAM 5 -->
+
+<div class="program-item">
+
+<span>5.Enter an array from user and print the number which is even ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1mYnRPzrFqQBOECj8FMBURHh653lxHRvH"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+
+<!-- PROGRAM 6 -->
+
+<div class="program-item">
+
+<span>6.Enter an array from user and print the number which is positive ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1n7B2NHmW7vw7qyApzG9Ne8-VzY7sK2IT"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+
+<!-- ADD PROGRAM 7 TO 99 HERE -->
+
+
+<div class="program-item">
+
+<span>7.Enter an array from user and square all the values of array ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1BChxTEOjXcN-Z4qJjPoNPrT3BRWnW9XY"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>8.Enter an array from user and find maximum and minimum value?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1f8L1VYWswmwlJdCYwuexK0yxP8I_1_1v"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>9.Enter an array from user and find the k-th smallest value?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1xX5RBgviugA1TokK2zz_A7AR0MCUDnVb"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>10.Enter an array from user and add all values ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1G0WLs454LqNwygQDzXBkcEE3MetUEAnd"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>11.Enter an array from user and find the duplicate values?</span>
+
+<a
+href="https://texteditor.co/?id=drive-10TCJUPgaD7D5UIPlVaIO-D0DFGnxSSKE"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>12.Enter an array from user and remove the duplicate values and fill with zero?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1N4YBC9Hcz7a8dUDrY-AFdPkqr9gvXL4_"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>13.Enter an array from user and count the duplicate values?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1WjttE8lg46pEI6dlv-5JiCWw7H3w_Tnk"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>14.Enter an array from user and print all possible combinations of the elements?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1LBT6qir43oEpGZiaCLueIBuKJ8VFX7BZ"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>15.Enter an array from user and print all the palindrome numbers?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1HzIra9mqwoZCI1a8v4iHSgD6ULKxtXtR"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>16.Enter two arrays from the user and check they are same or not?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1DzEEXK-QwWOiHD8FTdew5_dqAXm07tXd"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>17.Merge the two sorted arrays into one array but in sorted order?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1uQWedSJ2i1cx7u5AUmn0ffuFNDx2wOLD"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>18.Find the local minima in the array? (An element in an array is a local minima if it less than the element after it, and the element before it)
+Start Solving</span>
+
+<a
+href="https://texteditor.co/?id=drive-1NYJf708s-ztXs7Cs_j_6KHEIOu5JhjmI"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>19.Find the local maxima in the array? (An element in an array is a local maxima if it greater than the element after it, and the element before it)</span>
+
+<a
+href="https://texteditor.co/?id=drive-1Fj_qIppH2ZFDlSrvLkB5Gi-31kbaIjMC"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>20.Trapping Rain Water Problem: Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.</span>
+
+<a
+href="https://texteditor.co/?id=drive-1R1ekdirW3l-n2pAahVh9nVzYXjDivGPe"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- STRING -->
+<!-- ================================================= -->
+
+<div class="topic-card">
+
+<div class="topic-icon">🔤</div>
+
+<h3>String</h3>
+
+<p>
+
+String manipulation, comparison,
+searching and other string programs.
+
+</p>
+
+<span class="program-count">
+
+29 Programs
+
+</span>
+
+<button
+class="view-btn"
+onclick="togglePrograms('stringPrograms')">
+
+▼ View 29 Programs
+
+</button>
+
+
+<div
+class="program-list"
+id="stringPrograms">
+
+
+<div class="program-item">
+
+<span>1.ENTER THE STRING FROM USER AND CONVERT IN UPPERCASE ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1wwFFHYApMV5zwITYRAk49oSkG6CU6GMU"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>2.ENTER THE STRING FROM USER AND CONVERT IN LOWERCASE ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1iYjXufVXuMtogDgFgdWiDHUgdBe5jxxg"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>3.ENTER THE STRING FROM USER AND CONVERT INTO SENTENCE CASE ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1R6S9MbrJ9FjD3pBvPMuSZz6WbidlZGqK"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>4.ENTER THE STRING FROM USER AND CONVERT INTO TITLE CASE ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-10FV05kewEICkoPXV1oR0DrRF2DTKg0rb"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>5.ENTER THE STRING FROM USER AND CONVERT INTO TOGGLE CASE ?
+Start Solving</span>
+
+<a
+href="https://texteditor.co/?id=drive-121D-5UVn7AhLZQVL-L3jaJZNphCNkZFu"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>6.ENTER THE STRING FROM USER AND FINAL LENGTH OF THE STRING ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1c8V8zwRjPixKPVHje52coX82ut3xz_7g"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>7.ENTER TWO STRINGS FROM USER AND COMPARE THOSE STRINGS THAT THEY ARE EQUAL OR NOT?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1L1Uhxb0mO-EJyyMvKo3BEPzEQXMR6Lff"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>8.ENTER TWO STRINGS FROM USER AND CONCATENATE THOSE STRINGS IN ANOTHER STRING AND DISPLAY THE ANSWER?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1cn9SXjrBfvcc_kwQWOpy0hnrkrGtGZwt"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>9.ENTER THE STRING FROM USER AND COPY IT INTO ANOTHER STRING VARIABLE?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1eiBt1Lejb3JqmRBWgNbSpb9tp90Chf8u"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>10.ENTER THE STRING FROM USER, ENTER THE INDEX NUMBER AND PRINT CHARACTER PRESENT ON THAT INDEX ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1ls4rTQjUR0jPmB1Bm0ekzr1DLzAxJ0hu"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>11.ENTER THE STRING FROM USER AND CHECK ITS PALINDROME OR NOT?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1ySmZukn9T8KBoG0V5kmbkWNWC2hg5RRX"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>12.ENTER THE STRING FROM THE USER AND PRINT EACH CHARACTER IN NEW LINE ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1VyabusurZH4IRnjFYg3zbqB05YFNptoB"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>13.ENTER THE STRING FROM THE USER AND COPY REVERSE OF THE STRING INTO ANOTHER STRING ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-1bSyOm9AjQsn0DO19WRqlKBu9nUgnkWrz"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>14.ENTER THE STRING FROM THE USER AND PRINT THE DIFFERENCE OF ASCII VALUE OF EACH CHARACTER ?</span>
+
+<a
+href="https://texteditor.co/?id=drive-10vIGYkxF7X_ZWGz18f7nSl11f0cW32nn"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>15.ENTER THE STRING FROM THE USER, ENTER A CHARACTER ALSO AND SEARCH THE CHARACTER IN THE STRING?</span>
+
+<a
+href="https://texteditor.co/?id=drive-19daOx4k81wdwSoU9OJtLPScwCFATi2G0"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>16.ENTER THE STRING FROM THE USER, ALSO ENTER A CHARACTER AND PRINT THE INDEX OF THE CHARACTER IF IT IS EXIST IN THE STRING ELSE PRINT -1.</span>
+
+<a
+href="https://texteditor.co/?id=drive-1FwpjVWrdkLr4TxjVBrlkFeMzop39mOJP"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>17.ENTER THE STRING FROM THE USER, AND COUNT THE NUMBER OF VOWELS.</span>
+
+<a
+href="https://texteditor.co/?id=drive-1ze2HIBQo6fh4eVJOFm1dPZ_VVXAnUoj2"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>18.ENTER THE STRING FROM THE USER AND CONVERT INTO AN INTEGER VALUE?</span>
+
+<a
+href="https://texteditor.co/?id=drive-14ccpPJPwozcXVmN6V4ud-BsyJ_9Xrhdg"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>19.ENTER THE STRING FROM THE USER AND CONVERT INTO A FLOAT VALUE?</span>
+
+<a
+href="https://texteditor.co/?id=drive-13g2CiUL6XvhunwQu425AxDRstclyv8fV"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>20.ENTER THE STRING FROM THE USER AND COUNT THE NUMBER OF CHARACTERS, WORDS, SPACES AND LINES</span>
+
+<a
+href="https://texteditor.co/?id=drive-1BinulDpj9jFvpn2okjPyVnHGmoO380Pf"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>21.PRINT ALL THE PERMUTATION OF A STRING I.E. "ABCDE".</span>
+
+<a
+href="https://texteditor.co/?id=drive-1q9aYpq7XmwxShxzAkNntRQ_ZUxkhiysS"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>22.ENTER THE STRING FROM THE USER, SORT THE STRING IN ASCENDING ORDER AND PRINT IT.</span>
+
+<a
+href="https://texteditor.co/?id=drive-1i6ytusp_dGuLe5gXBoavt8d9j7pzoDja"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>23.ENTER A SENTENCE FROM USER AND THEN ENTER THE WORD AND COUNT THE OCCURENCE OF THAT WORD IN THE SENTENCE.</span>
+
+<a
+href="https://texteditor.co/?id=drive-1gStSk9qTxRUxnpaTB9AFYES0GjYPwbLZ"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>24.ENTER A SENTENCE FROM USER AND THEN ENTER THE WORD AND REPLACE THAT WORD BY ANOTHER WORD.</span>
+
+<a
+href="https://texteditor.co/?id=drive-1XaEAUzCY9uHgD0k49Kur23AXQLnfKSXh"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>25.ENTER THE STRING FROM THE USER AND TRIM/ ELIMINATE THE SPACES FROM BOTH ENDS (IF ANY).</span>
+
+<a
+href="https://texteditor.co/?id=drive-1UG7kgAwpeKdihztvHG9KxVJf_v32XwTU"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>26.ENTER THE STRING FROM USER AND SPLITS THE FIRST WORD AND SECOND WORD AND RETURN THE START INDEX OF THE SECOND WORD.</span>
+
+<a
+href="https://texteditor.co/?id=drive-1OtZzTXs3JYz4NPrtIo8Gx5HFYpRG0_Oz"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>27.DISPLAY THE STRING ON THE OUTPUT SCREEN BUT ASK THE TEXT ALIGNMENT OPTION GIVEN BY THE USER (1 FOR LEFT, 2 FOR CENTER, 3 RIGHT)</span>
+
+<a
+href="https://texteditor.co/?id=drive-1DOSYecZqmSn_e2Q640HyvhgMMFvqDBCA"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>28.CREATE A DICTIONARY HAVING 10 WORDS AND THEIR MEANING WITH FOLLOWING OPERATIONS. [CREATE, DELETE, SEARCH].</span>
+
+<a
+href="https://texteditor.co/?id=drive-1AwrtHPImd7053tTnu_6stfnL2s1jB2wM"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+<div class="program-item">
+
+<span>29.ENTER THE STRING FROM USER AND CONVERT CHARACTERS INTO THEIR ASCII VALUES IN THE INTEGER ARRAY. [FOR EXAMPLE TAKE 10 CHARACTERS]</span>
+
+<a
+href="https://texteditor.co/?id=drive-1KugzD90JnZsxwEDtttRe5nqTueb-en6v"
+target="_blank"
+class="open-code">
+
+Open Code
+
+</a>
+
+</div>
+
+<!-- ADD PROGRAM 5 TO 148 HERE -->
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- RECURSION -->
+<!-- ================================================= -->
+
+<div class="topic-card">
+
+<div class="topic-icon">🔄</div>
+
+<h3>Recursion</h3>
+
+<p>
+
+Recursive programming problems and
+recursive algorithms.
+
+</p>
+
+<span class="program-count">
+
+8 Programs
+
+</span>
+
+<button
+class="view-btn"
+onclick="togglePrograms('recursionPrograms')">
+
+▼ View 8 Programs
+
+</button>
+
+
+<div
+class="program-list"
+id="recursionPrograms">
+
+
+<div class="program-item">
+
+<span>1.CALCULATE FACTORIAL OF A NUMBER USING RECURSION</span>
+
+<a href="https://texteditor.co/?id=drive-1P1rmfeH-M2apuuCpmV3CfWI3Fpse7jm4"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>2.CALCULATE FIBONACCI OF A NUMBER USING RECURSION</span>
+
+<a href="https://texteditor.co/?id=drive-10I77TMiOGQkJ1qgxB2K4uXvVX6Irxx1V"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>3.CALCULATE THE SUM OF NATURAL NUMBERS TILL 10 USING RECURSION.</span>
+
+<a href="https://texteditor.co/?id=drive-16HxANVm5e367h2lUvx7gVihi_8nKa5_-"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>4.CONVERT A NUMBER INTO BINARY USING RECURSION</span>
+
+<a href="https://texteditor.co/?id=drive-1MYeBJXTQkYzfgb-Io2HPu0P8DL56QMqt"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>5.FIND THE LARGEST ELEMENT IN THE INTEGER ARRAY USING RECURSION.</span>
+
+<a href="https://texteditor.co/?id=drive-1zka7_Yp4VVnbPHkFj0qqK4WEOM0LMR1b"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>6.FIND THE SMALLEST ELEMENT IN THE INTEGER ARRAY USING RECURSION.</span>
+
+<a href="https://texteditor.co/?id=drive-17VOIGaHyo-3avA6uvpAuU1n5BD_ZTwax"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>7.ENTER THE NUMBER FROM THE USER AND ADD ALL DIGITS OF THE NUMBER USING RECURSION.</span>
+
+<a href="https://texteditor.co/?id=drive-1l6g2beVSOV-OkrWCID-ytv0GqN25qia4"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>8.FIND THE ARITHMETIC MEAN OF AN INTEGER ARRAY USING RECURSION.</span>
+
+<a href="https://texteditor.co/?id=drive-1Z3wSQC3b9XhhsgHF2AVUtSkcRyneVKVD"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- MULTI DIMENSIONAL ARRAY -->
+<!-- ================================================= -->
+
+<div class="topic-card">
+
+<div class="topic-icon">🧮</div>
+
+<h3>Multi Dimensional Array</h3>
+
+<p>
+
+Matrix and two-dimensional array
+programs.
+
+</p>
+
+<span class="program-count">
+Programs
+</span>
+
+<button
+class="view-btn"
+onclick="togglePrograms('multiPrograms')">
+
+▼ View Programs
+
+</button>
+
+
+<div
+class="program-list"
+id="multiPrograms">
+
+
+<div class="program-item">
+
+<span>1.Enter a matrix of 4 rows and 2 columns from the user display it in matrix format?</span>
+
+<a href="https://texteditor.co/?id=drive-1Zd0Cyukmwy8AJhZJDJyFufAYlsHkxfB4"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>2.Enter two Matrices from user, add the matrices and display the answer?
+Start Solving</span>
+
+<a href="https://texteditor.co/?id=drive-1PZmeaag7RduyVgrVn5S-JPGdRkGk3xnz"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>3.Enter two Matrices from user, subtract the matrices and display the answer?</span>
+
+<a href="https://texteditor.co/?id=drive-13ZpSQ5ImXWm8tuv-m9QivdZ2ME24pzEH"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>4.Enter two Matrices from user, multiply the matrices and display the answer?</span>
+
+<a href="https://drive.google.com/file/d/1FIseczOH4qa8AQT45flu1Dyb9-G56Aza/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>5.Enter a Matrix from user, copy it in another matrix of same size?</span>
+
+<a href="https://drive.google.com/file/d/1uGkrbMieZm6SXo44f95xo1poRbthYbT4/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>6.Enter the Matrix from user, multiply it with a scalar value and display the answer?</span>
+
+<a href="https://drive.google.com/file/d/1ltls5HmKSbF_Wc2lA4wmAw7SrN1t89HW/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>7.Create a tic tac toe game using 2D Arrays.</span>
+
+<a href="https://drive.google.com/file/d/1luMEAg3z2mFDynTU8pwbGY40_rsmbITy/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- STACK -->
+<!-- ================================================= -->
+
+<div class="topic-card">
+
+<div class="topic-icon">📚</div>
+
+<h3>Stack</h3>
+
+<p>
+
+Stack implementation using
+push, pop and peek operations.
+
+</p>
+
+<span class="program-count">
+13 Programs
+</span>
+
+<button
+class="view-btn"
+onclick="togglePrograms('stackPrograms')">
+
+▼ View 13 Programs
+
+</button>
+
+
+<div
+class="program-list"
+id="stackPrograms">
+
+
+<div class="program-item">
+
+<span>1.CREATE A STACK IMPLEMENTING THE OPERATIONS ON AN INTEGER ARRAY (PUSH, POP, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/17Rdxq_zE9c0-7YyGlRw0maKuYa_qEURc/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>2.CREATE A STACK IMPLEMENTING THE OPERATIONS ON THE CHARACTERS ARRAY (PUSH, POP, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1MnMEQ0D1Iw_P9H4FoTtKOwwaXcj-eJaP/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>3.CREATE A STACK IMPLEMENTING THE OPERATIONS ON AN INTEGER NODES (DYNAMICALLY) (PUSH, POP, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1ogVfjctfnR6xWrZwBgHwrbo1H_w9Fnnp/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>4.CREATE A STACK IMPLEMENTING THE OPERATIONS ON THE CHARACTERS NODES (DYNAMICALLY) (PUSH, POP, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1SF1RaeHibbANwM-nQa5kiHsGZTD3RzQc/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>5.ENTER THE STRING FROM THE USER AND REVERSE THE STRING USING STACKS.</span>
+
+<a href="https://drive.google.com/file/d/1jMde4zFA1g9WBTwwapAk0yqe6akr1Kwc/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>6.CREATE THE PROGRAM TO MATCH THE SINGLE BRACKET USING STACKS.</span>
+
+<a href="https://drive.google.com/file/d/1e12eovysnRKfybskWZG2g6CO4pvmqsXT/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>7.CREATE TWO INTEGER STACKS IN A SINGLE ARRAY.</span>
+
+<a href="https://drive.google.com/file/d/1GcSLFMuf5d71GLrasd4m9D-TZSfJWeyv/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>8.SORT THE STACK IN ASCENDING ORDER USING INTEGER ARRAY.</span>
+
+<a href="https://drive.google.com/file/d/1FOb0yLwRTdeB_QGkgVdrLoHEUahyK-HF/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>9.ENTER THE INFIX EXPRESSION FROM USER AND CONVERT INTO PREFIX EXPRESSION.</span>
+
+<a href="https://drive.google.com/file/d/1n7vMh-x_34vefCjWq-aWsJAkTLJixkMF/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>10.ENTER THE INFIX EXPRESSION FROM USER AND CONVERT INTO POSTFIX EXPRESSION.</span>
+
+<a href="https://drive.google.com/file/d/1Y_J-1qN7R8n6j3sBTl1D3cbKFqVKcHeF/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>11.CREATE A PROGRAM TO EVALUATE THE PREFIX EXPRESSION.</span>
+
+<a href="https://drive.google.com/file/d/1qGRMQC4BPLXThiq3KKNRCCsCrFbU6pKT/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>12.CREATE A PROGRAM TO EVALUATE THE POSTFIX EXPRESSION.</span>
+
+<a href="https://drive.google.com/file/d/1DlJKOrlor9j3OFZ_00X9veOBfwzgnrxP/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>13.IMPLEMENT THE TOWER OF HANOI USING STACKS.</span>
+
+<a href="https://drive.google.com/file/d/12Ms2Ro5vPYJgeCDW-dIIKkx3F-weJwqq/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+
+<!-- ADD PROGRAM 5 TO 13 -->
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- QUEUE -->
+<!-- ================================================= -->
+
+<div class="topic-card">
+
+<div class="topic-icon">🚶</div>
+
+<h3>Queue</h3>
+
+<p>
+
+Queue implementation, insertion,
+deletion and circular queue.
+
+</p>
+
+<span class="program-count">
+20 Programs
+</span>
+
+<button
+class="view-btn"
+onclick="togglePrograms('queuePrograms')">
+
+▼ View 20 Programs
+
+</button>
+
+
+<div
+class="program-list"
+id="queuePrograms">
+
+
+<div class="program-item">
+
+<span>1.IMPLEMENT THE OPERATIONS OF SIMPLE QUEUE IN AN INTEGER ARRAY (INSERT, DELETE, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1fYexAaMRBZwW_GPN3DDE-QBdlB9GP9y2/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>2.IMPLEMENT THE OPERATIONS OF SIMPLE QUEUE IN AN STRING ARRAY (INSERT, DELETE, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/17RgPBM46ZyaCTMVGB_Tj0A_H5KvLUIO0/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>3.IMPLEMENT THE OPERATIONS OF QUEUE DYNAMICALLY OF INTEGERS (INSERT, DELETE, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1OLBSRzSb_QNCWhqRIKEERYockByY8pn-/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>4.IMPLEMENT THE OPERATIONS OF QUEUE DYNAMICALLY OF STRING (INSERT, DELETE, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1y9_PSiqwvfyiENUcHKs9y3R_0dX1BYAj/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>5.IMPLEMENT THE OPERATIONS OF CIRCULAR QUEUE IN AN INTEGER ARRAY (INSERT, DELETE, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1nmySjDD32MOp5a8QIV7BHywW3R_6Iesv/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>6.IMPLEMENT THE OPERATIONS OF CIRCULAR QUEUE IN AN STRING ARRAY (INSERT, DELETE, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1Khz2JPIJjBDBCsUsfMU3pV1I_L5vsFbn/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>7.IMPLEMENT THE OPERATIONS OF PRIORITY QUEUE IN AN INTEGER ARRAY (INSERT, DELETE, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1M52ZGKH0P4_7jsemy7lSGHyAC_3-BnPh/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>8.IMPLEMENT THE OPERATIONS OF PRIORITY QUEUE IN AN STRING ARRAY (INSERT, DELETE, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1GaKM2Bqa7RuJfhz5F34h57JcesLILDh2/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>9.IMPLEMENT THE OPERATIONS OF DOUBLE ENDED QUEUE IN AN INTEGER ARRAY (INSERT, DELETE, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1e4zx2QDpjdJTpP0jwF6GoMO2Flw8KRx0/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>10.IMPLEMENT THE OPERATIONS OF DOUBLE ENDED QUEUE IN AN STRING ARRAY (INSERT, DELETE, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1ZJsdmI4d0dxEnrgU7C6SaNyXgWDjREkK/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>11.IMPLEMENT THE OPERATIONS OF PRIORITY QUEUE DYNAMICALLY OF INTEGERS (INSERT, DELETE, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1yhaX9OktWT_CP9r8BFZyS760i6nfSoBY/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>12.IMPLEMENT THE OPERATIONS OF PRIORITY QUEUE DYNAMICALLY OF STRING (INSERT, DELETE, PEEK, ISEMPTY, ISFULL)</span>
+
+<a href="https://drive.google.com/file/d/1TpMrAyYbqzjYtFFT2hdztxfA4dc1yqiy/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>13.Find the first circular tour that visits all petrol pumps</span>
+
+<a href="https://drive.google.com/file/d/1c75wJmIXZOn9IvTUxXCzBqyuhRet5YNt/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>14.Length of the longest valid substring</span>
+
+<a href="https://drive.google.com/file/d/1YKq4qNJ5GZ7GiFwkJ_tx0rKYyjfERkBM/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>15.Find the Next Greater Element</span>
+
+<a href="https://drive.google.com/file/d/10Sm50hRh6IUkl1OTeTKE-kVNI388pxAm/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>16.Find Next Smaller Element</span>
+
+<a href="https://drive.google.com/file/d/1aUB6jKWkgrTaqOC-yF-c76vH6MxlPCwS/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>17.Queue based approach for first non-repeating character in a stream</span>
+
+<a href="https://drive.google.com/file/d/102OcK2rEgtvjd345092VA17lOWFs9TZ2/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>18.Reverse First K elements of Queue</span>
+
+<a href="https://drive.google.com/file/d/1bbiqP-hqibfDF0-HCDIJBbS0xFg1iZnW/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>19.Queue Reversal</span>
+
+<a href="https://drive.google.com/file/d/1jj0SwQSpXj0wClgLg4S3N87HQVsZ7f_A/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>20.Rotten Oranges</span>
+
+<a href="https://drive.google.com/file/d/1fgRd-RfspNDTSnR2zrmmhNi46UQImYA4/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<!-- ADD PROGRAM 5 TO 20 -->
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- LINKED LIST -->
+<!-- ================================================= -->
+
+<div class="topic-card">
+
+<div class="topic-icon">🔗</div>
+
+<h3>Linked List</h3>
+
+<p>
+
+Insertion, deletion, traversal
+and linked list operations.
+
+</p>
+
+<span class="program-count">
+11 Programs
+</span>
+
+<button
+class="view-btn"
+onclick="togglePrograms('linkedPrograms')">
+
+▼ View 11 Programs
+
+</button>
+
+
+<div
+class="program-list"
+id="linkedPrograms">
+
+
+<div class="program-item">
+
+<span>1.IMPLEMENT THE OPERATIONS OF SINGLE LINKED LIST STORING INTEGER VALUES (INSERT AT BEGIN,INSERT AT POS,INSERT AT END,DELETE AT BEGIN,DELETE AT END, DELETE AT POS, ISEMPTY, ISFULL, DISPLAY, SEARCH)</span>
+
+<a href="https://drive.google.com/file/d/1sV4QZkUnTUnrCDoagwpXRqV3YH5e2D10/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>2.IMPLEMENT THE OPERATIONS OF SINGLE CIRCULAR LINKED LIST STORING INTEGER VALUES (INSERT AT BEGIN,INSERT AT POS,INSERT AT END,DELETE AT BEGIN,DELETE AT END, DELETE AT POS, ISEMPTY, ISFULL, DISPLAY, SEARCH)</span>
+
+<a href="https://drive.google.com/file/d/1Z178S57q7UfPuercKzgN5sbmH8glh3DU/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>3.IMPLEMENT THE OPERATIONS OF DOUBLY LINKED LIST STORING INTEGER VALUES (INSERT AT BEGIN,INSERT AT POS,INSERT AT END,DELETE AT BEGIN,DELETE AT END, DELETE AT POS, ISEMPTY, ISFULL, DISPLAY, SEARCH)</span>
+
+<a href="https://drive.google.com/file/d/10NGrSJ57MG1rDmDB3ki02egzS6IAbDvf/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>4.IMPLEMENT THE OPERATIONS OF DOUBLY CIRCULAR LINKED LIST STORING INTEGER VALUES (INSERT AT BEGIN,INSERT AT POS,INSERT AT END,DELETE AT BEGIN,DELETE AT END, DELETE AT POS, ISEMPTY, ISFULL, DISPLAY, SEARCH)</span>
+
+<a href="https://drive.google.com/file/d/1gmEKp-S0tZYkB9RSWAgs-OSrabuMgNK2/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>5.IMPLEMENT THE OPERATIONS OF SINGLE LINKED LIST STORING STRING VALUES (INSERT AT BEGIN,INSERT AT POS,INSERT AT END,DELETE AT BEGIN,DELETE AT END, DELETE AT POS, ISEMPTY, ISFULL, DISPLAY, SEARCH)</span>
+
+<a href="https://drive.google.com/file/d/1on0s3MSY9GaTQ1flCRxpsVc72IPnnoVt/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>6.IMPLEMENT THE OPERATIONS OF SINGLE CIRCULAR LINKED LIST STORING STRING VALUES (INSERT AT BEGIN,INSERT AT POS,INSERT AT END,DELETE AT BEGIN,DELETE AT END, DELETE AT POS, ISEMPTY, ISFULL, DISPLAY, SEARCH)</span>
+
+<a href="https://drive.google.com/file/d/1a4d06PbiR9cxj_Uxro7iw5i6j3WbWMji/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>7.IMPLEMENT THE OPERATIONS OF DOUBLY LINKED LIST STORING STRING VALUES (INSERT AT BEGIN,INSERT AT POS,INSERT AT END,DELETE AT BEGIN,DELETE AT END, DELETE AT POS, ISEMPTY, ISFULL, DISPLAY, SEARCH)</span>
+
+<a href="https://drive.google.com/file/d/1lqG8O_PmpJvQQA8SxjbpfugR4Adfvx5x/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>8.IMPLEMENT THE OPERATIONS OF DOUBLY CIRCULAR LINKED LIST STORING STRING VALUES (INSERT AT BEGIN,INSERT AT POS,INSERT AT END,DELETE AT BEGIN,DELETE AT END, DELETE AT POS, ISEMPTY, ISFULL, DISPLAY, SEARCH)</span>
+
+<a href="https://drive.google.com/file/d/10h9GRKB03Rtb7fRKF-ST8tJDHpS3bcST/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>9.ENTER THE 2 POLYNOMIAL EQUATIONS DYNAMICALLY, ADD THEM AND DISPLAY THE ANSWER.</span>
+
+<a href="https://drive.google.com/file/d/1cUUikRZAkteEeognwZX6L9RYK8SipQwe/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>10.ENTER THE 2 POLYNOMIAL EQUATIONS DYNAMICALLY, SUBTRACT THEM AND DISPLAY THE ANSWER.</span>
+
+<a href="https://drive.google.com/file/d/1QNjJAOPisIvS8cUiEG0IqNxfZE2m38j-/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>11.ENTER THE 2 POLYNOMIAL EQUATIONS DYNAMICALLY, MULTIPLY THEM AND DISPLAY THE ANSWER.</span>
+
+<a href="https://drive.google.com/file/d/1qZitL2oYJl9Yq2a_OEsGD5FimO3ieOAv/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<!-- ADD PROGRAM 5 TO 11 -->
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- TREES -->
+<!-- ================================================= -->
+
+<div class="topic-card">
+
+<div class="topic-icon">🌳</div>
+
+<h3>Trees</h3>
+
+<p>
+
+Binary Tree and Binary Search
+Tree programs.
+
+</p>
+
+<span class="program-count">
+20 Programs
+</span>
+
+<button
+class="view-btn"
+onclick="togglePrograms('treePrograms')">
+
+▼ View 20 Programs
+
+</button>
+
+
+<div
+class="program-list"
+id="treePrograms">
+
+
+<div class="program-item">
+
+<span>1.CONSTRUCT BINARY TREE FROM PREORDER AND INORDER TRAVERSAL</span>
+
+<a href="https://drive.google.com/file/d/1l4mikWz7NhQYbBHiDBwzxdFjm-7H9IQH/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>2.BINARY TREE LEVEL ORDER TRAVERSAL</span>
+
+<a href="https://drive.google.com/file/d/1Zyz9gc-uA1fuoCc_yjBNo3RCMOfsmuFs/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>3.PRINT LEFT VIEW OF BINARY TREE</span>
+
+<a href="https://drive.google.com/file/d/1bQaY6hwSWuY3NrCOqsRzfOjhm5tdnNK0/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>4.DISPLAY THE RIGHT VIEW OF BINARY TREE</span>
+
+<a href="https://drive.google.com/file/d/1nNdk97GAGIvI2YgQwH4RY4MMQlcmGJkV/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>5.CONSTRUCT BINARY TREE FROM POSTORDER AND INORDER TRAVERSAL</span>
+
+<a href="https://drive.google.com/file/d/17wTM08Z3bv-6yvF-QFd-vtqtz7C6aaWy/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>6.FIND THE MAXIMUM DEPTH OF BINARY TREE</span>
+
+<a href="https://drive.google.com/file/d/1r8FdvIRRBrbshgwKgqmXURf9uHdzALJB/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>7.CREATE BINARY SEARCH TREE USING ARRAYS (INSERT, DELETE, SEARCH, PREORDER, INORDER, POSTORDER, MINIMUM ELEMENT)</span>
+
+<a href="https://drive.google.com/file/d/1kKmH_r3VLAf13TcSOxT6OfInrkL_nJoy/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>8.CREATE BINARY SEARCH TREE DYNAMICALLY (INSERT, DELETE, SEARCH, PREORDER, INORDER, POSTORDER, MINIMUM ELEMENT)</span>
+
+<a href="https://drive.google.com/file/d/1DuOJ6FE-1ilPCvJsd-v1VW8nhrs0ew0h/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>9.FIND INORDER PREDECESSOR AND INORDER SUCCESSOR OF BINARY SEARCH TREE (DYNAMICALLY REPRESENTED)</span>
+
+<a href="https://drive.google.com/file/d/1NeB_xmuXpeiNjGZheD8R614acbj9BXYn/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>10.CHECK WHETHER BINARY SEARCH TREE CONTAINS DEAD END</span>
+
+<a href="https://drive.google.com/file/d/1L0gIvFQh0b_jtiendnKSLyTZdaDCV1oB/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>11.CREATE BINARY TREE TO BINARY SEARCH TREE THROUGH ARRAY.</span>
+
+<a href="https://drive.google.com/file/d/1jbaw-b05Of2PI4wR6HtYkKNsEPsVbohP/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>12.FIND KTH LARGEST ELEMENT IN BINARY SEARCH TREE THROUGH ARRAY</span>
+
+<a href="https://drive.google.com/file/d/1yaz5ZvFVSrfAjY65ZEdkFSIg7fP12PwJ/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>13.FIND KTH SMALLEST ELEMENT IN A BINARY SEARCH TREE THROUGH ARRAY</span>
+
+<a href="https://drive.google.com/file/d/1N-tdgRbLg6oJK7s3eGtjm-I0vM9vuRox/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>14.PRINT PREORDER TRAVERSAL TO POSTORDER TRAVERSAL OF BINARY SEARCH TREE</span>
+
+<a href="https://drive.google.com/file/d/1g3frmLv0zV3gas7c-5QvyJjiFYVJ4C6C/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>15.CONSTRUCT BINARY SEARCH TREE FROM GIVEN PREORDER TRAVERSAL THROUGH ARRAYS</span>
+
+<a href="https://drive.google.com/file/d/1laT2foRBlaAxz-C5c722IbbrDz1bsVXM/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>16.CONSTRUCT BINARY SEARCH TREE FROM GIVEN POSTORDER TRAVERSAL THROUGH ARRAYS</span>
+
+<a href="https://drive.google.com/file/d/1c1D7j_5H7dZSWfQ5Voy-h3QCCApTX_xa/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>17.CREATE STRICTLY BINARY TREE FROM THE GIVEN INPUT BY THE USER (DYNAMICALLY)</span>
+
+<a href="https://drive.google.com/file/d/1MUecOtujkhtmNnZE3HBkYWbywEC1MLxQ/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>18.CREATE ALMOST COMPLETE BINARY TREE FROM THE GIVEN INPUT BY THE USER (DYNAMICALLY)</span>
+
+<a href="https://drive.google.com/file/d/1x-O6WIEncQw1l6ggIlszHp_rSrpelAjz/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>19.CREATE COMPLETE BINARY TREE FROM THE GIVEN INPUT BY THE USER (DYNAMICALLY)</span>
+
+<a href="https://texteditor.co/?id=drive-1DUAiNgBdHm3WozIg2-eUD9K1BIjUqQAc"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>20.COUNT THE NUMBER OF NODES IN BINARY SEARCH TREE CONSTRUCTED DYNAMICALLY</span>
+
+<a href="https://drive.google.com/file/d/1I8G_yGyqZmJ2AACP43qnUx8eskTpGcfu/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<!-- ADD PROGRAM 5 TO 20 -->
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- GRAPHS -->
+<!-- ================================================= -->
+
+<div class="topic-card">
+
+<div class="topic-icon">🕸️</div>
+
+<h3>Graphs</h3>
+
+<p>
+
+Graph representation and
+graph traversal algorithms.
+
+</p>
+
+<span class="program-count">
+6 Programs
+</span>
+
+<button
+class="view-btn"
+onclick="togglePrograms('graphPrograms')">
+
+▼ View 6 Programs
+
+</button>
+
+
+<div
+class="program-list"
+id="graphPrograms">
+
+
+<div class="program-item">
+
+<span>1.ENTER THE VERTICES AND EDGES AND REPRESENT IN ADJACENCY MATRIX AND PRINT IT.</span>
+
+<a href="https://drive.google.com/file/d/1wcm7TRBerDI0AI1hSqaY523Chhax9HS7/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>2.CREATE THE GRAPH AS A ADJACENCY LIST WITH OPERATIONS SUCH AS INSERTION, DELETION</span>
+
+<a href="https://drive.google.com/file/d/1y7sH90X0rTA2x9hxXpHn7Ew1CI0V31ZG/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>3.TRAVERSE THE ADJACENT MATRIX WITH DEPTH FIRST SEARCH</span>
+
+<a href="https://drive.google.com/file/d/1DTeAtYBlizvoghYd0wFWbY_3INLfgDUY/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>4.TRAVERSE THE ADJACENT LIST WITH DEPTH FIRST SEARCH</span>
+
+<a href="https://drive.google.com/file/d/1w9l3ljgDqNH08Ti1Fk0SnV8xXB1qIhYI/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>5.TRAVERSE THE ADJACENT MATRIX WITH BREADTH FIRST SEARCH</span>
+
+<a href="https://drive.google.com/file/d/1NOpqQH21NyhH450o3SqZOI-l4fiYZzYJ/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>6.TRAVERSE THE ADJACENT LIST WITH BREADTH FIRST SEARCH</span>
+
+<a href="https://drive.google.com/file/d/1LO-AjTeRePfWgU4yuoaCX4-stsNL9Mxa/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- SEARCHING -->
+<!-- ================================================= -->
+
+<div class="topic-card">
+
+<div class="topic-icon">🔍</div>
+
+<h3>Searching Algorithms</h3>
+
+<p>
+
+Linear Search, Binary Search
+and other searching algorithms.
+
+</p>
+
+<span class="program-count">
+10 Programs
+</span>
+
+<button
+class="view-btn"
+onclick="togglePrograms('searchPrograms')">
+
+▼ View 10 Programs
+
+</button>
+
+
+<div
+class="program-list"
+id="searchPrograms">
+
+
+<div class="program-item">
+
+<span>1.ENTER A INTEGER ARRAY FROM THE USER, ENTER AN INTEGER VALUE AND PERFORM LINEAR SEARCH ALGORITHM THROUGH ITERATION.</span>
+
+<a href="https://drive.google.com/file/d/1ZJYi_8vnrPshPJ9jendrXhLYCY4OMHof/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>2.ENTER A STRING FROM THE USER, ENTER A CHARACTER AND PERFORM LINEAR SEARCH ALGORITHM THROUGH RECURSION.</span>
+
+<a href="https://drive.google.com/file/d/1gsZLvtSjcomel3E3c9X5LwSYYjVKUePK/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>3.ENTER A INTEGER ARRAY FROM THE USER, ENTER AN INTEGER VALUE AND PERFORM LINEAR SEARCH ALGORITHM THROUGH RECURSION.</span>
+
+<a href="https://drive.google.com/file/d/1vJHgaCfsfHUvzUvXiClmj7J5kvgIqvsN/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>4.ENTER A STRING FROM THE USER, ENTER A CHARACTER AND PERFORM LINEAR SEARCH ALGORITHM THROUGH ITERATION.</span>
+
+<a href="https://drive.google.com/file/d/11goTzPb0KnhCWod-YOpYmgUPJOW9UmA2/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>5.ENTER A INTEGER ARRAY FROM THE USER, ENTER AN INTEGER VALUE AND PERFORM BINARY SEARCH ALGORITHM THROUGH ITERATION.</span>
+
+<a href="https://drive.google.com/file/d/1mnCVkOIqmF0y0F73aF6Tnpp6CAP1PsjW/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>6.ENTER A STRING FROM THE USER, ENTER A CHARACTER AND PERFORM BINARY SEARCH ALGORITHM THROUGH RECURSION.</span>
+
+<a href="https://drive.google.com/file/d/1mr9TLQy2J3TYrxPu1WjjvaBOMm7w3rhE/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>7.ENTER A INTEGER ARRAY FROM THE USER, ENTER AN INTEGER VALUE AND PERFORM BINARY SEARCH ALGORITHM THROUGH RECURSION.</span>
+
+<a href="https://drive.google.com/file/d/1j5pu1CpVsFmJzh1m8p31IVqsYOA_eOJ3/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>8.ENTER A STRING FROM THE USER, ENTER A CHARACTER AND PERFORM BINARY SEARCH ALGORITHM THROUGH ITERATION.</span>
+
+<a href="https://drive.google.com/file/d/1nMvxPdX44ITdSo-6JpFZ-OgHwEUt65zh/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>9.CALCULATE THE BEST AND WORST COMPLEXITY OF THE LINEAR SEARCHING ALGORITHM WITH EXACT TIME TAKEN BY THE ALGORITHM ON INTEGER ARRAY.</span>
+
+<a href="https://drive.google.com/file/d/1hUVgz7dpgkOqzqyAYGGlIBFeZ3Z6uqSM/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>10.CALCULATE THE BEST AND WORST COMPLEXITY OF THE BINARY SEARCHING ALGORITHM WITH EXACT TIME TAKEN BY THE ALGORITHM ON INTEGER ARRAY</span>
+
+<a href="https://drive.google.com/file/d/1apO119xDR_DfJA1Xd8rTDqqUszsOddRF/view"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<!-- ADD PROGRAM 3 TO 10 -->
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- SORTING -->
+<!-- ================================================= -->
+
+<div class="topic-card">
+
+<div class="topic-icon">📊</div>
+
+<h3>Sorting Algorithms</h3>
+
+<p>
+
+Bubble Sort, Selection Sort,
+Insertion Sort, Merge Sort,
+Quick Sort and more.
+
+</p>
+
+<span class="program-count">
+Programs
+</span>
+
+<button
+class="view-btn"
+onclick="togglePrograms('sortPrograms')">
+
+▼ View Programs
+
+</button>
+
+
+<div
+class="program-list"
+id="sortPrograms">
+
+
+<div class="program-item">
+
+<span>1.ENTER A INTEGER ARRAY FROM THE USER AND PERFORM SELECTION SORT ALGORITHM THROUGH ITERATION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1jEcWbLS9d6dzdPqIfb-B4XwGTQeMfIp6"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>2.ENTER A INTEGER ARRAY FROM THE USER AND PERFORM SELECTION SORT ALGORITHM THROUGH RECURSION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1OtaI1c2bTKvViAu44I-AzyyTcNPUa8n0"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>3.ENTER A INTEGER ARRAY FROM THE USER AND PERFORM BUBBLE SORT ALGORITHM THROUGH ITERATION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1-Gcr9t-AdQaPygQ8i4HmTwbe-z4K-9Eo"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>4.ENTER A INTEGER ARRAY FROM THE USER AND PERFORM BUBBLE SORT ALGORITHM THROUGH RECURSION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1vOcXaGLfmSNHqCy4rNRyArknMxknyTcV"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+
+<div class="program-item">
+
+<span>5.ENTER A INTEGER ARRAY FROM THE USER AND PERFORM INSERTION SORT ALGORITHM THROUGH ITERATION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1j9zqiq4vbDFng9JvCZRJQ4T_GD0WU2tm"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>6.ENTER A INTEGER ARRAY FROM THE USER AND PERFORM INSERTION SORT ALGORITHM THROUGH RECURSION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1jnbYPQNNkS30P759q8J_dz6TlaOhN_ua"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>7.ENTER A INTEGER ARRAY FROM THE USER AND PERFORM MERGE SORT ALGORITHM THROUGH ITERATION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1WRBYeUMTrIh_dkkMPfgdoGnhJM-uG_5K"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>8.ENTER A INTEGER ARRAY FROM THE USER AND PERFORM MERGE SORT ALGORITHM THROUGH RECURSION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1OjQvMUxPhxi8H416fQAyXNw7MT4TqvW5"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>9.ENTER A INTEGER ARRAY FROM THE USER AND PERFORM QUICK SORT ALGORITHM THROUGH ITERATION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1yyyGaApG6Mjw0rq2atTsfIH5YmmJzJhB"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>10.ENTER A INTEGER ARRAY FROM THE USER AND PERFORM QUICK SORT ALGORITHM THROUGH RECURSION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1MNSOibjScb-Kf38XXn9uMe8t4DerzbK3"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>11.ENTER A STRING ARRAY FROM THE USER AND PERFORM SELECTION SORT ALGORITHM THROUGH ITERATION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1B_0NqdsPuMDo6aRK7DYZFaM-OqVTtlDV"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>12.ENTER A STRING ARRAY FROM THE USER AND PERFORM SELECTION SORT ALGORITHM THROUGH RECURSION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1m8Gka05FJmris8lzmySrEGmRoBCww7Pu"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>13.ENTER A STRING ARRAY FROM THE USER AND PERFORM BUBBLE SORT ALGORITHM THROUGH ITERATION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1-jG7oMw6WQP_tQIqFlh-JFwtEifkgcUH"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>14.ENTER A STRING ARRAY FROM THE USER AND PERFORM BUBBLE SORT ALGORITHM THROUGH RECURSION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1r9t6cKhghETOrcNC6jMGFnV7SpcdHsge"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>15.ENTER A STRING ARRAY FROM THE USER AND PERFORM INSERTION SORT ALGORITHM THROUGH ITERATION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-17kgKwlFVxrsRNepnciSMjadIRro2oYnC"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>16.ENTER A STRING ARRAY FROM THE USER AND PERFORM INSERTION SORT ALGORITHM THROUGH RECURSION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1J-K_QZO9ff7_lBN8z7b1gmhAKJhYVqxQ"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>17.ENTER A STRING ARRAY FROM THE USER AND PERFORM MERGE SORT ALGORITHM THROUGH ITERATION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1XzjIs6kslS02uahRysO-R7hIemQAQcKI"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>18.ENTER A STRING ARRAY FROM THE USER AND PERFORM MERGE SORT ALGORITHM THROUGH RECURSION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1Cb7vSBywN5WeHiMJCYO4XF45KktRfic9"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>19.ENTER A STRING ARRAY FROM THE USER AND PERFORM QUICK SORT ALGORITHM THROUGH ITERATION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1SCmDDP-BOwSMIm4yh3oqh2KGFttNnVZf"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+<div class="program-item">
+
+<span>20.ENTER A STRING ARRAY FROM THE USER AND PERFORM QUICK SORT ALGORITHM THROUGH RECURSION. ALSO CALCULATE THE WORST AND BEST COMPLEXITY WITH EXACT TIME.</span>
+
+<a href="https://texteditor.co/?id=drive-1l9Op-T5dLL5IqYG-GaeBWl12T3rbJuOT"
+target="_blank"
+class="open-code">
+Open Code
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ================= COMPLEXITY ================= -->
+
+<section
+class="section complexity-section"
+id="complexity">
+
+
+<div class="section-title">
+
+<h2>
+📊 Time & Space Complexity
+</h2>
+
+<p>
+Important algorithms and their complexities.
+</p>
+
+</div>
+
+
+<div class="table-container">
+
+<table class="complexity-table">
+
+<tr>
+
+<th>Algorithm</th>
+
+<th>Best</th>
+
+<th>Average</th>
+
+<th>Worst</th>
+
+<th>Space</th>
+
+</tr>
+
+
+<tr>
+
+<td>Linear Search</td>
+
+<td>O(1)</td>
+
+<td>O(n)</td>
+
+<td>O(n)</td>
+
+<td>O(1)</td>
+
+</tr>
+
+
+<tr>
+
+<td>Binary Search</td>
+
+<td>O(1)</td>
+
+<td>O(log n)</td>
+
+<td>O(log n)</td>
+
+<td>O(1)</td>
+
+</tr>
+
+
+<tr>
+
+<td>Bubble Sort</td>
+
+<td>O(n)</td>
+
+<td>O(n²)</td>
+
+<td>O(n²)</td>
+
+<td>O(1)</td>
+
+</tr>
+
+
+<tr>
+
+<td>Insertion Sort</td>
+
+<td>O(n)</td>
+
+<td>O(n²)</td>
+
+<td>O(n²)</td>
+
+<td>O(1)</td>
+
+</tr>
+
+
+<tr>
+
+<td>Quick Sort</td>
+
+<td>O(n log n)</td>
+
+<td>O(n log n)</td>
+
+<td>O(n²)</td>
+
+<td>O(log n)</td>
+
+</tr>
+
+
+<tr>
+
+<td>Merge Sort</td>
+
+<td>O(n log n)</td>
+
+<td>O(n log n)</td>
+
+<td>O(n log n)</td>
+
+<td>O(n)</td>
+
+</tr>
+
+
+<tr>
+
+<td>Stack Push / Pop</td>
+
+<td>O(1)</td>
+
+<td>O(1)</td>
+
+<td>O(1)</td>
+
+<td>O(1)</td>
+
+</tr>
+
+
+<tr>
+
+<td>Linked List Traversal</td>
+
+<td>O(n)</td>
+
+<td>O(n)</td>
+
+<td>O(n)</td>
+
+<td>O(1)</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<p>
+
+© 2026
+<span>
+Data Structures Practical File
+</span>
+
+</p>
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+
+/* ================= OPEN / CLOSE PROGRAMS ================= */
+
+function togglePrograms(id) {
+
+    let list =
+        document.getElementById(id);
+
+    list.classList.toggle("show");
+
+}
+
+
+
+/* ================= SEARCH TOPICS ================= */
+
+function searchTopics() {
+
+    let input =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+
+    let cards =
+        document
+        .querySelectorAll(".topic-card");
+
+
+    cards.forEach(function(card) {
+
+        let text =
+            card.innerText.toLowerCase();
+
+
+        if (text.includes(input)) {
+
+            card.style.display = "block";
+
+        }
+
+        else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+</script>
+
+
+</body>
+
+</html>
